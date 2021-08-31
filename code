@@ -1,0 +1,32 @@
+// C++ code
+//
+int pin0 = 0;
+
+void setup()
+{
+  pinMode(5, OUTPUT);
+  pinMode(3, INPUT);
+  pinMode(0, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(1, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(5, HIGH);
+  if (digitalRead(3) == 1) {
+    digitalWrite(0, LOW);
+    pin0 = LOW;
+    digitalWrite(2, HIGH);
+  }
+  if (digitalRead(3) == 0) {
+    digitalWrite(2, LOW);
+    if (pin0 == LOW) {
+      digitalWrite(1, HIGH);
+      delay(3000); // Wait for 3000 millisecond(s)
+      digitalWrite(1, LOW);
+      digitalWrite(0, HIGH);
+      pin0 = HIGH;
+    }
+  }
+}
